@@ -1,2 +1,355 @@
-# srujith.github.io
-My website Portfolio
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Resume - Srujith Tej Dachuru</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The application is designed as a single-page portfolio to provide an engaging alternative to a static resume. It starts with a header featuring key contact information and visa status, immediately addressing recruiter priorities. The core of the app includes an interactive skills dashboard visualized with a radar chart for a quick competency overview, an interactive timeline to navigate the career path, and detailed sections for experience and achievements. This structure is designed to facilitate both quick scanning and in-depth exploration. -->
+    <!-- Visualization & Content Choices: A Radar Chart (Chart.js) is used for the skills section to offer a compelling, holistic view of technical abilities, a significant improvement over a simple list. Interaction is enhanced with hover-over tooltips detailing specific technologies within each skill category. Report Info: Resume skills list. Goal: Organize and inform. Method: Radar Chart on Canvas. An interactive timeline (HTML/CSS/JS) visualizes career progression, allowing users to click and smoothly scroll to detailed descriptions. Goal: Organize and show change. Method: Clickable timeline. These choices prioritize user engagement and clarity. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FDFBF7;
+            color: #333;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .timeline {
+            position: relative;
+            width: 100%;
+            margin: 2rem 0;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #CBD5E0;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -1px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            right: -8px;
+            background-color: #FDFBF7;
+            border: 2px solid #4A5568;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .timeline-left {
+            left: 0;
+        }
+        .timeline-right {
+            left: 50%;
+        }
+        .timeline-right::after {
+            left: -8px;
+        }
+        .timeline-content {
+            padding: 15px 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .tech-tag {
+            background-color: #E2E8F0;
+            color: #4A5568;
+            font-size: 0.75rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            margin: 2px;
+            display: inline-block;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            color: #2D3748;
+        }
+        .achievement-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .achievement-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <main class="container mx-auto p-4 md:p-8 max-w-5xl">
+        <header class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-gray-800">Srujith Tej Dachuru</h1>
+            <p class="text-xl text-gray-600 mt-2">DevOps & Site Reliability Engineer</p>
+            <div class="mt-4 bg-green-100 text-green-800 text-sm font-semibold inline-block px-4 py-2 rounded-full">
+                Visa Status: Stamp 1G (Authorized to work full-time in Ireland)
+            </div>
+            <div class="flex justify-center space-x-6 mt-6 text-gray-700">
+                <a href="tel:+353899764026" class="hover:text-blue-600 transition-colors">📱 +353-899764026</a>
+                <a href="mailto:srujithirl07@gmail.com" class="hover:text-blue-600 transition-colors">✉️ srujithirl07@gmail.com</a>
+                <a href="https://linkedin.com/in/srujithtej" target="_blank" class="hover:text-blue-600 transition-colors">🔗 LinkedIn</a>
+            </div>
+        </header>
+
+        <section class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4 text-center">Professional Summary</h2>
+            <p class="text-center text-gray-700 max-w-3xl mx-auto">
+                Results-driven DevOps and Site Reliability Engineer with over two years of hands-on experience in building, automating, and maintaining highly available and fault-tolerant cloud infrastructure. Proven expertise in CI/CD, on-call incident response, and performance monitoring. Seeking a challenging DevOps or SRE role in Dublin to leverage my skills in large-scale system reliability and automation.
+            </p>
+        </section>
+
+        <section id="skills" class="mb-12">
+            <h2 class="section-title">Core Competencies</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">This chart provides a holistic view of my technical capabilities. Hover over any skill to see the specific technologies I've worked with. It highlights my expertise in key areas essential for modern SRE and DevOps roles, from cloud infrastructure and containerization to observability and automation.</p>
+            <div class="chart-container">
+                <canvas id="skillsChart"></canvas>
+            </div>
+        </section>
+        
+        <section id="experience" class="mb-12">
+            <h2 class="section-title">Career Path</h2>
+            <p class="text-center text-gray-600 mb-8 max-w-2xl mx-auto">This interactive timeline showcases my professional journey and educational background. Click on any of the roles to jump to a detailed description of my responsibilities and achievements in that position.</p>
+            <div class="timeline">
+                <div class="timeline-item timeline-left">
+                    <div class="timeline-content" onclick="scrollToSection('edu-nci')">
+                        <h3 class="font-bold text-lg">M.S. in Data Analytics</h3>
+                        <p class="text-sm text-gray-500">National College of Ireland</p>
+                        <p class="text-sm font-semibold text-gray-600">2024 - 2025</p>
+                    </div>
+                </div>
+                <div class="timeline-item timeline-right">
+                     <div class="timeline-content" onclick="scrollToSection('exp-nse-axis')">
+                        <h3 class="font-bold text-lg">Site Reliability Engineer</h3>
+                        <p class="text-sm text-gray-500">NSEIT (Client: Axis Bank)</p>
+                        <p class="text-sm font-semibold text-gray-600">06/2023 - 01/2024</p>
+                    </div>
+                </div>
+                 <div class="timeline-item timeline-left">
+                     <div class="timeline-content" onclick="scrollToSection('exp-nse-hpe')">
+                        <h3 class="font-bold text-lg">Site Reliability Engineer</h3>
+                        <p class="text-sm text-gray-500">NSEIT (Client: HPE)</p>
+                        <p class="text-sm font-semibold text-gray-600">02/2022 - 06/2023</p>
+                    </div>
+                </div>
+                 <div class="timeline-item timeline-right">
+                    <div class="timeline-content" onclick="scrollToSection('edu-kl')">
+                        <h3 class="font-bold text-lg">Bachelor of Technology</h3>
+                        <p class="text-sm text-gray-500">KL University</p>
+                        <p class="text-sm font-semibold text-gray-600">2017 - 2021</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience-details" class="mb-12">
+            <h2 class="section-title">Professional Experience</h2>
+             <div id="exp-nse-axis" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8 scroll-mt-20">
+                <h3 class="text-xl font-bold text-gray-800">Site Reliability Engineer</h3>
+                <p class="text-md font-semibold text-gray-600">NSEIT (Client: Axis Bank) | Mumbai, India</p>
+                <p class="text-sm text-gray-500 mb-4">06/2023 - 01/2024</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Automated large-scale data ingestion of 2-4TB daily banking data from CSV and MySQL databases into Logstash, enhancing processing efficiency and pipeline scalability.</li>
+                    <li>Built and maintained Jenkins CI/CD pipelines to automate deployment and operational workflows, improving release speed and reducing manual tasks.</li>
+                    <li>Implemented data masking within Logstash filters to anonymize sensitive customer information, ensuring adherence to strict security and privacy policies.</li>
+                    <li>Developed and customized Kibana dashboards for real-time monitoring and analytics, supporting compliance and operational decision-making.</li>
+                </ul>
+                <div class="mt-4">
+                    <span class="tech-tag">Logstash</span><span class="tech-tag">Jenkins</span><span class="tech-tag">Kibana</span><span class="tech-tag">MySQL</span><span class="tech-tag">CI/CD</span>
+                </div>
+            </div>
+            <div id="exp-nse-hpe" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8 scroll-mt-20">
+                <h3 class="text-xl font-bold text-gray-800">Site Reliability Engineer</h3>
+                <p class="text-md font-semibold text-gray-600">NSEIT (Client: HPE) | Bangalore, India</p>
+                <p class="text-sm text-gray-500 mb-4">02/2022 - 06/2023</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>Built and maintained a scalable, end-to-end centralized log collection pipeline for India's largest private government cloud, ensuring high availability and compliance with SLAs.</li>
+                    <li>Automated onboarding and offboarding of over 200 VMs weekly, maintaining precise log source inventories and ensuring data completeness to meet SLI and SLA requirements.</li>
+                    <li>Led 24/7 on-call incident response and root cause analysis for critical production issues, consistently reducing downtime and improving pipeline reliability.</li>
+                    <li>Deployed Fluentd DaemonSets on Kubernetes clusters to capture container logs, enhancing observability and fault tolerance for containerized workloads.</li>
+                    <li>Served as the sole point of contact for ingestion latency monitoring, Elasticsearch index lifecycle management, and overall pipeline health.</li>
+                </ul>
+                 <div class="mt-4">
+                    <span class="tech-tag">Kafka</span><span class="tech-tag">Elasticsearch</span><span class="tech-tag">Fluentd</span><span class="tech-tag">Ansible</span><span class="tech-tag">Kubernetes</span><span class="tech-tag">Docker</span>
+                </div>
+            </div>
+        </section>
+        
+        <section id="achievements" class="mb-12">
+            <h2 class="section-title">Achievements & Awards</h2>
+            <div class="grid md:grid-cols-3 gap-6 text-center">
+                <div class="bg-white p-6 rounded-lg shadow-md achievement-card">
+                    <div class="text-4xl mb-2">🏆</div>
+                    <h3 class="font-bold text-lg">Bravo Award Recipient</h3>
+                    <p class="text-gray-600 text-sm">Received twice at NSEIT for exemplary commitment and consistently delivering critical project outcomes.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md achievement-card">
+                    <div class="text-4xl mb-2">⭐</div>
+                    <h3 class="font-bold text-lg">High Performance</h3>
+                    <p class="text-gray-600 text-sm">Maintained performance ratings averaging 3.5 to 4 out of 5, demonstrating reliable contributions.</p>
+                </div>
+                 <div class="bg-white p-6 rounded-lg shadow-md achievement-card">
+                    <div class="text-4xl mb-2">🤝</div>
+                    <h3 class="font-bold text-lg">Client Recognition</h3>
+                    <p class="text-gray-600 text-sm">Recognized by stakeholders for ownership of mission-critical pipelines and ensuring seamless continuity.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="education-details">
+            <h2 class="section-title">Education</h2>
+            <div class="space-y-6">
+                 <div id="edu-nci" class="bg-white p-6 rounded-lg shadow-md scroll-mt-20">
+                    <h3 class="text-xl font-bold text-gray-800">M.S. in Data Analytics</h3>
+                    <p class="text-md font-semibold text-gray-600">National College of Ireland | Dublin, Ireland</p>
+                    <p class="text-sm text-gray-500">2024 - 2025</p>
+                    <p class="text-sm text-gray-700 mt-2">Key Modules: Scalable Systems, Data Intensive, Database and Analytical Programming.</p>
+                </div>
+                <div id="edu-kl" class="bg-white p-6 rounded-lg shadow-md scroll-mt-20">
+                    <h3 class="text-xl font-bold text-gray-800">Bachelor of Technology, Electronics & Communication</h3>
+                    <p class="text-md font-semibold text-gray-600">KL University | Vijayawada, India</p>
+                    <p class="text-sm text-gray-500">2017 - 2021</p>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="text-center p-6 mt-8 border-t border-gray-200">
+        <p class="text-gray-500">This interactive resume was built to dynamically showcase my skills and experience.</p>
+    </footer>
+
+    <script>
+        const ctx = document.getElementById('skillsChart').getContext('2d');
+        const skillsChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Cloud & DevOps', 
+                    'Containerization', 
+                    'CI/CD', 
+                    'IaC', 
+                    'Observability', 
+                    'Scripting', 
+                    'Streaming'
+                ],
+                datasets: [{
+                    label: 'Proficiency Level',
+                    data: [85, 90, 80, 85, 95, 80, 88],
+                    backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                    borderColor: 'rgba(59, 130, 246, 1)',
+                    pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: 'rgba(59, 130, 246, 1)'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: {
+                            color: '#e2e8f0'
+                        },
+                        grid: {
+                            color: '#e2e8f0'
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 13,
+                                weight: '500'
+                            },
+                            color: '#4a5568'
+                        },
+                        ticks: {
+                           display: false,
+                           stepSize: 20
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 100
+                    }
+                },
+                plugins: {
+                    legend: {
+                       display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(context) {
+                                const labels = {
+                                    'Cloud & DevOps': 'AWS, Terraform, Jenkins',
+                                    'Containerization': 'Kubernetes, Docker',
+                                    'CI/CD': 'Jenkins',
+                                    'IaC': 'Ansible, Terraform',
+                                    'Observability': 'Elasticsearch, Logstash, Kibana, Prometheus, Grafana, Fluentd, Fluentbit',
+                                    'Scripting': 'Python, Shell Scripting',
+                                    'Streaming': 'Apache Kafka, Kafka MirrorMaker'
+                                };
+                                const skillCategory = context.label;
+                                const technologies = labels[skillCategory];
+                                if (technologies) {
+                                   return technologies.split(', ').map(t => `• ${t}`);
+                                }
+                                return '';
+                            },
+                             title: function(context) {
+                                return context[0].label;
+                            }
+                        },
+                        backgroundColor: '#fff',
+                        titleColor: '#333',
+                        titleFont: { size: 14, weight: 'bold' },
+                        bodyColor: '#333',
+                        bodyFont: { size: 12 },
+                        bodySpacing: 5,
+                        padding: 12,
+                        cornerRadius: 4,
+                        borderColor: '#e2e8f0',
+                        borderWidth: 1,
+                        displayColors: false
+                    }
+                }
+            }
+        });
+
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+    </script>
+</body>
+</html>
