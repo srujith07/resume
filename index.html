@@ -9,10 +9,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <!-- Chosen Palette: Warm Neutrals -->
-    <!-- Application Structure Plan: The application is designed as a single-page portfolio to provide an engaging alternative to a static resume. It starts with a header featuring key contact information and visa status, immediately addressing recruiter priorities. The core of the app includes an interactive skills dashboard visualized with a radar chart for a quick competency overview, an interactive timeline to navigate the career path, and detailed sections for experience and achievements. This structure is designed to facilitate both quick scanning and in-depth exploration. -->
-    <!-- Visualization & Content Choices: A Radar Chart (Chart.js) is used for the skills section to offer a compelling, holistic view of technical abilities, a significant improvement over a simple list. Interaction is enhanced with hover-over tooltips detailing specific technologies within each skill category. Report Info: Resume skills list. Goal: Organize and inform. Method: Radar Chart on Canvas. An interactive timeline (HTML/CSS/JS) visualizes career progression, allowing users to click and smoothly scroll to detailed descriptions. Goal: Organize and show change. Method: Clickable timeline. These choices prioritize user engagement and clarity. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -158,14 +154,24 @@
                         <p class="text-sm font-semibold text-gray-600">06/2023 - 01/2024</p>
                     </div>
                 </div>
-                 <div class="timeline-item timeline-left">
+                <div class="timeline-item timeline-left">
                      <div class="timeline-content" onclick="scrollToSection('exp-nse-hpe')">
                         <h3 class="font-bold text-lg">Site Reliability Engineer</h3>
                         <p class="text-sm text-gray-500">NSEIT (Client: HPE)</p>
                         <p class="text-sm font-semibold text-gray-600">02/2022 - 06/2023</p>
                     </div>
                 </div>
-                 <div class="timeline-item timeline-right">
+                <div class="timeline-item timeline-right">
+                    <div class="timeline-content border-l-4 border-yellow-400" onclick="scrollToSection('exp-techno')">
+                        <div class="flex justify-between items-start">
+                           <h3 class="font-bold text-lg">Cloud DevOps</h3>
+                           <span class="bg-yellow-100 text-yellow-800 text-xs font-bold px-2 py-0.5 rounded">Internship</span>
+                        </div>
+                       <p class="text-sm text-gray-500">TechnoTran</p>
+                       <p class="text-sm font-semibold text-gray-600">02/2021 - 12/2021</p>
+                   </div>
+               </div>
+                <div class="timeline-item timeline-left">
                     <div class="timeline-content" onclick="scrollToSection('edu-kl')">
                         <h3 class="font-bold text-lg">Bachelor of Technology</h3>
                         <p class="text-sm text-gray-500">KL University</p>
@@ -206,8 +212,11 @@
                     <span class="tech-tag">Kafka</span><span class="tech-tag">Elasticsearch</span><span class="tech-tag">Fluentd</span><span class="tech-tag">Ansible</span><span class="tech-tag">Kubernetes</span><span class="tech-tag">Docker</span>
                 </div>
             </div>
-            <div id="exp-techno" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8 scroll-mt-20">
-                <h3 class="text-xl font-bold text-gray-800">Cloud DevOps Engineer</h3>
+            <div id="exp-techno" class="bg-white p-6 md:p-8 rounded-lg shadow-md mb-8 scroll-mt-20 border-l-4 border-yellow-400">
+                <div class="flex items-center gap-3 mb-1">
+                    <h3 class="text-xl font-bold text-gray-800">Cloud DevOps Engineer</h3>
+                    <span class="bg-yellow-100 text-yellow-800 text-sm font-bold px-2 py-0.5 rounded">Internship</span>
+                </div>
                 <p class="text-md font-semibold text-gray-600">TechnoTran | Nellore, India</p>
                 <p class="text-sm text-gray-500 mb-4">02/2021 - 12/2021</p>
                 <ul class="list-disc list-inside text-gray-700 space-y-2">
@@ -217,7 +226,7 @@ data workflow automation and integration with subsequent Event Correlation and A
 mechanisms, and executed core Monitoring tasks to fulfill specific client reporting and observability requirements.</li>
                 </ul>
                 <div class="mt-4">
-                    <span class="tech-tag">Logstash</span><span class="tech-tag">Jenkins</span><span class="tech-tag">Kibana</span><span class="tech-tag">MySQL</span><span class="tech-tag">CI/CD</span>
+                    <span class="tech-tag">Python ETL</span><span class="tech-tag">OpenSearch</span><span class="tech-tag">Kibana</span><span class="tech-tag">Monitoring</span>
                 </div>
             </div>
         </section>
