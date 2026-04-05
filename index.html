@@ -4,12 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Srujith Tej Dachuru | Site Reliability Engineer</title>
-  <meta name="description" content="Dark, dynamic GitHub Pages portfolio for Srujith Tej Dachuru — Site Reliability Engineer / DevOps Engineer." />
+  <meta name="description" content="Portfolio of Srujith Tej Dachuru — Site Reliability Engineer / DevOps Engineer." />
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;700;800&family=Space+Grotesk:wght@500;700&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #050816;
@@ -32,7 +32,7 @@
       background:
         radial-gradient(circle at 18% 18%, rgba(34, 211, 238, 0.18), transparent 24%),
         radial-gradient(circle at 82% 14%, rgba(139, 92, 246, 0.16), transparent 22%),
-        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.12), transparent 26%),
+        radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.10), transparent 26%),
         linear-gradient(180deg, #050816 0%, #070b1f 46%, #04060f 100%);
       min-height: 100vh;
       overflow-x: hidden;
@@ -99,8 +99,18 @@
       -webkit-backdrop-filter: blur(18px);
     }
 
-    .hero-name {
-      transition: font-family 0.5s ease, letter-spacing 0.3s ease, transform 0.3s ease;
+    .hero-gradient-text {
+      background: linear-gradient(90deg, #ffffff, #67e8f9 40%, #c4b5fd 80%, #ffffff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .small-label {
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      font-size: 0.74rem;
+      color: #bae6fd;
     }
 
     .metric-card,
@@ -108,7 +118,8 @@
     .stack-pill,
     .exp-tab,
     .detail-point,
-    .project-chip {
+    .project-chip,
+    .impact-card {
       transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
     }
 
@@ -116,7 +127,8 @@
     .cap-card:hover,
     .stack-pill:hover,
     .detail-point:hover,
-    .project-chip:hover {
+    .project-chip:hover,
+    .impact-card:hover {
       transform: translateY(-4px);
       border-color: rgba(103, 232, 249, 0.28);
       box-shadow: 0 16px 40px rgba(8, 145, 178, 0.10);
@@ -145,13 +157,6 @@
       transform: translateY(0);
     }
 
-    .hero-gradient-text {
-      background: linear-gradient(90deg, #ffffff, #67e8f9 40%, #c4b5fd 80%, #ffffff);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
     .accent-border {
       position: relative;
       overflow: hidden;
@@ -177,13 +182,6 @@
       color: #04111f;
     }
 
-    .small-label {
-      letter-spacing: 0.24em;
-      text-transform: uppercase;
-      font-size: 0.74rem;
-      color: #bae6fd;
-    }
-
     .detail-panel {
       position: relative;
       overflow: hidden;
@@ -207,8 +205,29 @@
       height: 320px;
     }
 
+    .typed-wrap {
+      min-height: 42px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      color: #67e8f9;
+      animation: blink 0.9s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
     @media (max-width: 768px) {
       .chart-wrap { height: 280px; }
+      .typed-wrap { min-height: 34px; }
     }
   </style>
 </head>
@@ -224,17 +243,19 @@
         <div class="max-w-4xl">
           <div class="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-100">
             <span>✦</span>
-            Available for SRE / DevOps / Platform roles
+            Open to SRE / DevOps / Platform opportunities
           </div>
 
-          <h1 id="heroName" class="hero-name mt-5 text-4xl font-extrabold tracking-tight md:text-6xl hero-gradient-text">
+          <h1 class="mt-5 text-4xl font-extrabold tracking-tight md:text-6xl hero-gradient-text">
             Srujith Tej Dachuru
           </h1>
 
+          <div class="typed-wrap mt-4 text-2xl font-bold text-white md:text-3xl">
+            <span id="typedRole"></span><span class="cursor">|</span>
+          </div>
+
           <p class="mt-5 max-w-3xl text-base leading-7 text-slate-300 md:text-lg md:leading-8">
-            Site Reliability Engineer and DevOps Engineer focused on
-            <span class="font-semibold text-white"> observability, automation, Kubernetes, distributed logging systems, Kafka, ELK, Linux debugging, and production reliability</span>.
-            I build platforms that stay fast, visible, and dependable under real-world load.
+            I build and operate large-scale observability and platform systems across Kafka, ELK, Kubernetes, Jenkins, Terraform, Ansible, Prometheus, Grafana, Spark, Python, and Linux environments. My work has focused on log pipelines, automation, production support, scaling, and debugging distributed systems under real traffic.
           </p>
 
           <div class="mt-6 flex flex-wrap gap-3">
@@ -260,44 +281,50 @@
       </div>
     </header>
 
-    <section class="mt-8 grid gap-4 md:grid-cols-4 section-reveal">
+    <section class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-5 section-reveal">
       <div class="metric-card glass rounded-[26px] p-5">
-        <div class="text-3xl font-bold md:text-4xl">3+</div>
-        <div class="mt-1 text-sm text-slate-400">Years Experience</div>
-      </div>
-      <div class="metric-card glass rounded-[26px] p-5">
-        <div class="text-3xl font-bold md:text-4xl">4.5M</div>
-        <div class="mt-1 text-sm text-slate-400">Peak Messages / Sec</div>
+        <div class="text-3xl font-bold md:text-4xl">3</div>
+        <div class="mt-1 text-sm text-slate-400">Years of experience</div>
       </div>
       <div class="metric-card glass rounded-[26px] p-5">
         <div class="text-3xl font-bold md:text-4xl">1000+</div>
-        <div class="mt-1 text-sm text-slate-400">VMs Automated</div>
+        <div class="mt-1 text-sm text-slate-400">VM log sources onboarded</div>
+      </div>
+      <div class="metric-card glass rounded-[26px] p-5">
+        <div class="text-3xl font-bold md:text-4xl">7</div>
+        <div class="mt-1 text-sm text-slate-400">Node Kafka + Zookeeper cluster</div>
       </div>
       <div class="metric-card glass rounded-[26px] p-5">
         <div class="text-3xl font-bold md:text-4xl">40</div>
-        <div class="mt-1 text-sm text-slate-400">ELK Nodes Managed</div>
+        <div class="mt-1 text-sm text-slate-400">ELK nodes across 2 DCs</div>
+      </div>
+      <div class="metric-card glass rounded-[26px] p-5">
+        <div class="text-3xl font-bold md:text-4xl">4.5M</div>
+        <div class="mt-1 text-sm text-slate-400">Peak log messages / sec</div>
       </div>
     </section>
 
     <section class="mt-10 grid gap-6 lg:grid-cols-[1.2fr_0.8fr] section-reveal">
       <div class="glass rounded-[30px] p-6 md:p-8">
-        <div class="small-label">Profile</div>
-        <h2 class="mt-3 text-2xl font-bold md:text-3xl">Engineering reliable systems that stay observable, scalable, and calm under pressure.</h2>
+        <div class="small-label">Summary</div>
+        <h2 class="mt-3 text-2xl font-bold md:text-3xl">Production-first engineer with strong ownership across observability, automation, and incident response.</h2>
         <p class="mt-5 max-w-3xl text-slate-300 leading-7">
-          I specialize in production-grade observability and reliability engineering across large distributed environments. My work covers end-to-end log collection, Kafka and ELK ecosystems, Kubernetes operations, Linux-level debugging, automation with Python / Ansible / Terraform / Jenkins, cost-aware data processing, and incident response for critical enterprise workloads.
+          I have worked on end-to-end observability platforms, large-scale log collection pipelines, Kafka and ELK operations, Kubernetes-based ingestion, Terraform and Jenkins automation, and 24/7 support for critical environments. I have deployed systems from scratch, scaled them based on traffic and capacity planning, and handled production issues at Linux, network, and platform level.
         </p>
         <div class="mt-6 flex flex-wrap gap-2">
           <span class="tag rounded-full px-3 py-1.5 text-sm">Site Reliability Engineering</span>
-          <span class="tag rounded-full px-3 py-1.5 text-sm">DevOps & Platform Engineering</span>
-          <span class="tag rounded-full px-3 py-1.5 text-sm">Observability Engineering</span>
-          <span class="tag rounded-full px-3 py-1.5 text-sm">Kubernetes & Containers</span>
-          <span class="tag rounded-full px-3 py-1.5 text-sm">Incident Response</span>
-          <span class="tag rounded-full px-3 py-1.5 text-sm">Automation & CI/CD</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">DevOps Engineering</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Observability Platforms</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Kafka / ELK / EFK</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Kubernetes</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Terraform / Jenkins / Ansible</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Python / Spark</span>
+          <span class="tag rounded-full px-3 py-1.5 text-sm">Linux Debugging</span>
         </div>
       </div>
 
       <div class="glass rounded-[30px] p-6">
-        <div class="small-label">Skill Signal</div>
+        <div class="small-label">Core Strengths</div>
         <div class="chart-wrap mt-5">
           <canvas id="skillsChart"></canvas>
         </div>
@@ -305,27 +332,27 @@
     </section>
 
     <section class="mt-10 section-reveal">
-      <div class="small-label">What I do best</div>
+      <div class="small-label">Selected Impact</div>
       <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-        <article class="cap-card glass rounded-[28px] p-6">
-          <div class="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-cyan-200">📡</div>
-          <h3 class="text-lg font-semibold">Observability Engineering</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-300">Built large-scale ingestion, alerting, dashboards, anomaly detection, and reliability workflows using Fluent Bit, Fluentd, Kafka, Elasticsearch, Kibana, Prometheus, and Grafana.</p>
+        <article class="impact-card glass rounded-[28px] p-6">
+          <div class="mb-3 text-cyan-200 text-xl">📡</div>
+          <h3 class="text-lg font-semibold">End-to-end log collection</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-300">Installed and configured Fluent Bit across 1000+ VMs using Ansible, then pushed logs into Kafka and onward into centralized observability systems.</p>
         </article>
-        <article class="cap-card glass rounded-[28px] p-6">
-          <div class="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-cyan-200">☸️</div>
-          <h3 class="text-lg font-semibold">Platform & Containers</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-300">Hands-on with Kubernetes, DaemonSets, rolling upgrades, log collection for namespaces, and production support for distributed containerized workloads.</p>
+        <article class="impact-card glass rounded-[28px] p-6">
+          <div class="mb-3 text-cyan-200 text-xl">☸️</div>
+          <h3 class="text-lg font-semibold">Kubernetes ingestion stack</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-300">Deployed Fluentd on Kubernetes, including DaemonSets for namespace logs, parsing, aggregation, and production support of container log flows.</p>
         </article>
-        <article class="cap-card glass rounded-[28px] p-6">
-          <div class="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-cyan-200">⚙️</div>
-          <h3 class="text-lg font-semibold">Automation & CI/CD</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-300">Automated health checks, provisioning, scaling, deployments, and processing pipelines with Jenkins, Python, Terraform, Ansible, Spark, and Linux tooling.</p>
+        <article class="impact-card glass rounded-[28px] p-6">
+          <div class="mb-3 text-cyan-200 text-xl">⚙️</div>
+          <h3 class="text-lg font-semibold">Automation and scaling</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-300">Automated health checks, alerting, provisioning, and infra scaling with Python, Jenkins, Terraform, and Linux tooling based on real workload demand.</p>
         </article>
-        <article class="cap-card glass rounded-[28px] p-6">
-          <div class="mb-4 inline-flex rounded-2xl border border-white/10 bg-white/10 px-4 py-3 text-cyan-200">🛡️</div>
-          <h3 class="text-lg font-semibold">Production Reliability</h3>
-          <p class="mt-3 text-sm leading-6 text-slate-300">Strong incident response mindset with 24/7 support, bottleneck analysis, capacity planning, Linux debugging, and first-point-of-contact ownership for critical stacks.</p>
+        <article class="impact-card glass rounded-[28px] p-6">
+          <div class="mb-3 text-cyan-200 text-xl">🛡️</div>
+          <h3 class="text-lg font-semibold">Production ownership</h3>
+          <p class="mt-3 text-sm leading-6 text-slate-300">Worked as first point of contact for EFK, Kafka, Ansible, and Kubernetes stacks, solving major production issues and supporting business-critical systems 24/7.</p>
         </article>
       </div>
     </section>
@@ -334,7 +361,7 @@
       <div class="glass rounded-[30px] p-4 md:p-5">
         <div class="px-3 pt-2">
           <div class="small-label">Experience</div>
-          <h2 class="mt-3 text-2xl font-bold">Key projects and impact</h2>
+          <h2 class="mt-3 text-2xl font-bold">Projects and responsibilities</h2>
         </div>
         <div id="experienceTabs" class="mt-4 space-y-3"></div>
       </div>
@@ -351,11 +378,18 @@
       </div>
 
       <div class="glass rounded-[30px] p-6">
-        <div class="small-label">Why this portfolio works</div>
-        <div class="mt-5 space-y-4 text-sm leading-7 text-slate-300">
-          <p>This is built as a recruiter-friendly portfolio, not just a styled résumé. It highlights scale, reliability ownership, and the exact systems you have operated in production.</p>
-          <p>The dark premium visual design, animated background, dynamic font changes, and interactive experience section make it feel like a real engineering product.</p>
-          <p>It also works as a single static HTML file, so you can host it directly on GitHub Pages without React, build tools, or deployment complexity.</p>
+        <div class="small-label">Education</div>
+        <div class="mt-5 space-y-5">
+          <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-5">
+            <h3 class="text-lg font-semibold">M.S. in Data Analytics</h3>
+            <p class="mt-1 text-slate-300">National College of Ireland · Dublin, Ireland</p>
+            <p class="mt-1 text-sm text-slate-500">2024 – 2025</p>
+          </div>
+          <div class="rounded-2xl border border-white/10 bg-slate-950/30 p-5">
+            <h3 class="text-lg font-semibold">B.Tech in Electronics and Communication</h3>
+            <p class="mt-1 text-slate-300">KL University · Vijayawada, India</p>
+            <p class="mt-1 text-sm text-slate-500">2017 – 2021</p>
+          </div>
         </div>
       </div>
     </section>
@@ -364,10 +398,10 @@
       <div class="glass rounded-[34px] border border-cyan-300/18 bg-gradient-to-r from-cyan-400/12 via-blue-500/10 to-violet-500/12 p-8 md:p-10">
         <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
           <div class="max-w-3xl">
-            <div class="small-label">Open to Opportunities</div>
-            <h2 class="mt-3 text-3xl font-bold md:text-4xl">Let’s build reliable systems at scale.</h2>
+            <div class="small-label">Contact</div>
+            <h2 class="mt-3 text-3xl font-bold md:text-4xl">Let’s connect.</h2>
             <p class="mt-4 text-slate-200 leading-7">
-              Looking for Site Reliability Engineering, DevOps Engineering, Platform Engineering, or Observability-focused roles where I can own automation, resilience, and production excellence.
+              Looking for roles in Site Reliability Engineering, DevOps Engineering, Platform Engineering, and observability-focused infrastructure.
             </p>
           </div>
           <div class="flex flex-col gap-3 sm:flex-row">
@@ -377,46 +411,63 @@
         </div>
       </div>
     </section>
-
-    <footer class="pb-6 pt-8 text-center text-sm text-slate-500">
-      Built as a dynamic GitHub Pages portfolio for Srujith Tej Dachuru.
-    </footer>
   </main>
 
   <script>
-    const fonts = ["'Inter', sans-serif", "'Space Grotesk', sans-serif", "'Manrope', sans-serif", "'Syne', sans-serif"];
-    let fontIndex = 0;
-    const heroName = document.getElementById('heroName');
+    const roles = ['Site Reliability Engineer', 'DevOps Engineer'];
+    const typedRole = document.getElementById('typedRole');
+    let roleIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
 
-    setInterval(() => {
-      fontIndex = (fontIndex + 1) % fonts.length;
-      heroName.style.fontFamily = fonts[fontIndex];
-      heroName.style.letterSpacing = fontIndex % 2 === 0 ? '-0.03em' : '-0.02em';
-      heroName.style.transform = 'translateY(-2px)';
-      setTimeout(() => {
-        heroName.style.transform = 'translateY(0)';
-      }, 180);
-    }, 2300);
+    function typeLoop() {
+      const current = roles[roleIndex];
+      typedRole.textContent = current.slice(0, charIndex);
+
+      if (!isDeleting) {
+        charIndex++;
+        if (charIndex > current.length) {
+          isDeleting = true;
+          setTimeout(typeLoop, 1200);
+          return;
+        }
+      } else {
+        charIndex--;
+        if (charIndex < 0) {
+          isDeleting = false;
+          roleIndex = (roleIndex + 1) % roles.length;
+          charIndex = 0;
+        }
+      }
+
+      setTimeout(typeLoop, isDeleting ? 45 : 85);
+    }
+
+    typeLoop();
 
     const experience = [
       {
         id: 'uidai',
-        short: 'UIDAI / Government Cloud',
+        short: 'UIDAI / Government Datacenter',
         role: 'Site Reliability Engineer',
         company: 'NSEIT',
         period: '2022 – 2023',
         location: 'Hebbal / Manesar, India',
-        headline: 'Built and operated observability infrastructure for one of India’s largest government cloud environments.',
+        headline: 'Worked on end-to-end observability implementation for one of India’s largest government datacenter environments.',
         chips: ['Fluent Bit', 'Fluentd', 'Kafka', 'Kafka MirrorMaker', 'Elasticsearch', 'Kibana', 'Ansible', 'Kubernetes', 'Python', 'Linux'],
         points: [
-          'Implemented end-to-end log collection across 1000+ VMs using Fluent Bit installed and configured through Ansible playbooks.',
-          'Engineered data flow from multiple Linux distributions into Kafka clusters, then into Fluentd-based parsing and aggregation pipelines running on Kubernetes before indexing into ELK.',
-          'Replicated the full observability pipeline across two data centers and enabled cross-site data replication using Kafka MirrorMaker.',
-          'Managed and scaled Elasticsearch from smaller initial clusters to dual 20-node production clusters based on capacity planning and throughput requirements.',
-          'Handled peak observability throughput of up to 4.5 million messages per second across thousands of virtual machines.',
-          'Created tailored Kibana dashboards, alerts, and ML-based anomaly detection workflows for operations and observability teams.',
-          'Acted as the first point of contact for the full EFK / Kafka / Ansible / Kubernetes stack and resolved major production issues appreciated by the client.',
-          'Provided 24/7 support during critical windows, including overnight production coverage when system reliability demanded it.'
+          'Implemented end-to-end onboarding of different log sources from around 1000 VMs by installing and configuring Fluent Bit with Ansible playbooks.',
+          'Sent logs from 1000+ Linux systems into Kafka topics running on a 7-node Kafka + Zookeeper cluster.',
+          'Used Fluentd on Kubernetes for parsing, aggregation, and ingestion into a 20-node ELK cluster, then replicated the same setup in DC2 at Manesar.',
+          'Managed a total 40-node ELK setup across 2 data centers and scaled clusters according to workload and capacity planning.',
+          'Created tailored Kibana dashboards and alerting for observability use cases.',
+          'Deployed Fluentd as a DaemonSet to collect Kubernetes namespace logs.',
+          'Replicated data across both data centers using Kafka MirrorMaker.',
+          'Handled ML-based anomaly detection for collected observability logs.',
+          'Used Python scripts for health checks and alerts across the stack.',
+          'Acted as first point of contact for EFK, Kafka, Ansible, and Kubernetes.',
+          'Solved major production issues, provided overnight and 24/7 support when needed, and improved observability performance through Linux-level debugging.',
+          'Handled peak throughput of 4.5 million log messages per second across the observability platform.'
         ]
       },
       {
@@ -426,16 +477,16 @@
         company: 'NSEIT',
         period: '2023 – 2024',
         location: 'Mumbai, India',
-        headline: 'Automated cost-aware data processing and infrastructure scaling for enterprise banking observability workloads.',
+        headline: 'Worked on automated, cost-aware log processing and observability infrastructure for banking workloads.',
         chips: ['Jenkins', 'Terraform', 'Logstash', 'Elasticsearch', 'Kafka', 'Kubernetes', 'Python', 'Linux'],
         points: [
-          'Used Jenkins to trigger Logstash-based ingestion workflows whenever new files landed on target VMs.',
-          'Designed cost-saving automation where Terraform provisioned instances only when required, ran Logstash processing, shipped data into observability systems, and terminated instances after completion.',
-          'Automated scaling actions for Logstash and Elasticsearch based on alert-driven workflows coordinated through Jenkins and Terraform.',
-          'Wrote Python health checks to validate critical components across the observability stack.',
-          'Identified Kafka bottlenecks through network-focused Linux debugging and improved platform stability under load.',
-          'Supported Kubernetes-based Logstash deployments, scaling patterns, and rolling upgrades.',
-          'Worked with capacity planning and elastic scaling across Kafka, Elasticsearch, and supporting infrastructure to match workload demand.'
+          'Used Jenkins to trigger Logstash execution whenever files were added on target VMs.',
+          'Implemented cost-saving automation where Terraform brought up instances only when required, installed Logstash, processed data, pushed it to ELK, and terminated instances after completion.',
+          'Automated scaling for Logstash and Elasticsearch using alert-driven Jenkins and Terraform workflows.',
+          'Built Python health checks for the complete observability stack.',
+          'Identified Kafka bottlenecks through Linux and network-level debugging.',
+          'Supported Kubernetes-based Logstash deployment, scaling, and rolling upgrades.',
+          'Worked on capacity planning and scaled Kafka and ELK infrastructure according to compute load and traffic patterns.'
         ]
       },
       {
@@ -445,19 +496,20 @@
         company: 'TechnoTran',
         period: '2021',
         location: 'Nellore, India',
-        headline: 'Started by building monitoring systems from scratch and grew into distributed data and platform engineering work.',
+        headline: 'Built monitoring and data processing environments from scratch and gained hands-on distributed systems experience.',
         chips: ['Prometheus', 'Grafana', 'AWS', 'Python', 'Spark', 'ETL', 'Dashboards', 'Distributed Systems'],
         points: [
-          'Built Prometheus and Grafana environments from scratch, from VM setup and installation to dashboards, alert routing, and team-specific monitoring workflows.',
-          'Developed Python-based health checks and alerting for application environments.',
-          'Created Python and Spark ETL pipelines to ingest client data and power client-specific dashboards.',
-          'Provisioned cloud infrastructure on AWS, formed clusters to meet SLA requirements, and gained practical exposure to distributed computing systems.'
+          'Built Prometheus and Grafana setups from scratch, from spinning up VMs to installation, dashboards, and team-specific alerts.',
+          'Developed Python-based health checks and alerting for applications.',
+          'Built Python and Spark ETL pipelines to ingest data and create client-specific dashboards.',
+          'Provisioned AWS infrastructure and formed clusters according to SLA requirements.',
+          'Worked on distributed computing systems during internship projects.'
         ]
       }
     ];
 
     const techStack = [
-      'Linux', 'Kubernetes', 'Docker', 'Kafka', 'Elasticsearch', 'Logstash', 'Fluent Bit', 'Fluentd',
+      'Linux', 'Kubernetes', 'Docker', 'Kafka', 'Zookeeper', 'Elasticsearch', 'Logstash', 'Fluent Bit', 'Fluentd',
       'Kibana', 'Prometheus', 'Grafana', 'Jenkins', 'Terraform', 'Ansible', 'Python', 'Spark', 'AWS', 'OpenSearch'
     ];
 
@@ -480,9 +532,7 @@
       `).join('');
 
       tabsEl.querySelectorAll('[data-id]').forEach(btn => {
-        btn.addEventListener('click', () => {
-          renderExperience(btn.dataset.id);
-        });
+        btn.addEventListener('click', () => renderExperience(btn.dataset.id));
       });
     }
 
@@ -491,7 +541,7 @@
       renderTabs(item.id);
       detailEl.innerHTML = `
         <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-slate-300">
-          Featured engagement
+          Selected role
         </div>
         <div class="mt-5 flex flex-wrap items-start justify-between gap-4">
           <div>
@@ -526,10 +576,10 @@
     new Chart(ctx, {
       type: 'radar',
       data: {
-        labels: ['Observability', 'Kubernetes', 'CI/CD', 'Automation', 'Linux', 'Kafka / ELK', 'Cloud / IaC'],
+        labels: ['Observability', 'Kafka / ELK', 'Kubernetes', 'Automation', 'Linux', 'CI/CD', 'Cloud / IaC'],
         datasets: [{
           label: 'Strength',
-          data: [96, 88, 86, 92, 93, 95, 84],
+          data: [96, 95, 88, 92, 93, 86, 84],
           fill: true,
           backgroundColor: 'rgba(34, 211, 238, 0.18)',
           borderColor: 'rgba(103, 232, 249, 1)',
@@ -559,10 +609,7 @@
             angleLines: { color: 'rgba(255,255,255,0.10)' },
             grid: { color: 'rgba(255,255,255,0.10)' },
             pointLabels: { color: '#cbd5e1', font: { size: 12, family: 'Inter' } },
-            ticks: {
-              display: false,
-              stepSize: 20
-            },
+            ticks: { display: false, stepSize: 20 },
             suggestedMin: 0,
             suggestedMax: 100,
           }
@@ -572,9 +619,7 @@
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
+        if (entry.isIntersecting) entry.target.classList.add('visible');
       });
     }, { threshold: 0.16 });
 
